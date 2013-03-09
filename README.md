@@ -3,8 +3,6 @@
 > Create an app project for development within the
 > [FeedHenry](http://www.feedhenry.com/) studio.
 
----
-
 ## Installation
 Firstly, you should have [grunt-init](http://gruntjs.com/project-scaffolding)
 installed globally.

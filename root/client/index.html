@@ -1,5 +1,53 @@
 <!-- This file will be wrapped with an appropriate HTML5 doctype, <html>,
      <head> and <body> tags. Do NOT insert them yourself. -->
 
+<!-- Styles should be referenced before other content. -->
+<style>
+    body {
+        font-family: sans-serif;
+        font-size: 14px;
+    }
+</style>
+
 <h1>{%= title %}</h1>
-<p>{%= description %}</p>
+
+<p> Click on the button below to make a cloud "action" call which will return
+    the latest configuration information from the shared config.js file</p>
+
+<button id='run_button'> Execute cloud action call </button>
+
+<p> Config from locally included config.js : </p>
+<div id="localConfig"></div>
+
+<p> Config from cloud action call: </p>
+<div id="cloudConfig"></div>
+
+<!-- References to most JS should go at the bottom of your page. -->
+<script>
+    var exports = {};
+</script>
+
+<!-- Include the config.js file from the shared directory (as if it was in the
+     local directory) -->
+<script src="config.js"></script>
+
+<script>
+    $fh.ready(function() {
+        // The local config variable from config.js can be accessed directly
+        document.getElementById('localConfig').innerHTML = '<p>' +
+                JSON.stringify(config) + '</p>';
+
+        document.getElementById('run_button').onclick = function() {
+            // Invoke a cloud action call to get the remote configuration
+            // See: http://docs.feedhenry.com/wiki/Actions
+            $fh.act({
+                act: 'getConfig'
+            }, function(res) {
+                document.getElementById('cloudConfig').innerHTML =
+                        '<p>' + JSON.stringify(res.config) + '</p>';
+            }, function(code, errorprops, params) {
+                alert('An error occured: ' + code + ' : ' + errorprops);
+            });
+        };
+    });
+</script>

@@ -3,8 +3,8 @@
 exports.description = 'Create a coupled FeedHenry app project, intended to ' +
     'be built through the studio.';
 
-exports.notes = '_Note:_ If you do _not_ want to use the studio to build this' +
-    'project, you should use the _feedhenry-decoupled_ init task instead.';
+exports.notes = '_Note:_ If you do _not_ want to use the studio to build ' +
+    'this project, you should use the _feedhenry-decoupled_ init task instead.';
 
 // Warn on any non-dot file, .jshintrc or .gitignore.
 exports.warnOn = ['*', '.jshintrc', '.gitignore'];
@@ -25,11 +25,9 @@ exports.template = function(grunt, init, done) {
   ], function(err, props) {
 
     // If the project has an associated assembla project, we'll use that to link
-    // to relevant pages etc. throughout the project; in package.json, README
-    // etc... useful for everyone involved in future, for reference.
-    props.assembla = !(props.assembla === 'none');
-
-    if (props.assembla) {
+    // to relevant pages etc. throughout the project; useful for everyone
+    // involved in future, for reference.
+    if (props.assembla && props.assembla !== 'none') {
       props.repository = 'git://git.assembla.com/' + props.assembla + '.git';
       props.homepage = 'https://feedhenry.assembla.com/spaces/' +
           props.assembla + '/';

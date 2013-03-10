@@ -1,7 +1,7 @@
 # grunt-init-feedhenry
 
-> Create an app project for development within the
-> [FeedHenry](http://www.feedhenry.com/) studio.
+> Create a _coupled_ [FeedHenry](http://www.feedhenry.com/) app project,
+> intended to be built through the studio.
 
 ## Installation
 Firstly, you should have [grunt-init](http://gruntjs.com/project-scaffolding)
